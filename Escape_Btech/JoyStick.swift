@@ -16,33 +16,27 @@ struct JoyStick: View {
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 60,height: 60)
+                        .frame(width: 80,height: 80)
                         .foregroundStyle(.blue)
                     Image(systemName: "arrowshape.backward.fill")
                         .foregroundStyle(.black)
                         .font(.system(size: 50))
                 }
             }
-            .offset(x:0,y: window.height*0.35)
-            Circle()
-                .size(width: 50, height: 50)
-                .foregroundStyle(.blue)
-                .opacity(1)
-                .offset(x: window.width*0.022,y: window.height*0.77)
             Button{
                 
             } label: {
                 ZStack{
                     RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 60,height: 60)
+                        .frame(width: 80,height: 80)
                         .foregroundStyle(.blue)
                     Image(systemName: "arrowshape.forward.fill")
                         .foregroundStyle(.black)
                         .font(.system(size: 50))
                 }
             }
-            .offset(x:-window.width*0.62,y:window.height*0.35)
         }
+        .offset(x:-window.width*0.35,y:window.height*0.3)
         
     }
 }
