@@ -9,7 +9,9 @@ import SwiftUI
 
 struct JoyStick: View {
     var window:CGSize
+    @State var direction = "N"
     var body: some View {
+        let _ = print(direction)
         HStack {
             Button{
                 
@@ -23,6 +25,15 @@ struct JoyStick: View {
                         .font(.system(size: 50))
                 }
             }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ _ in
+                        direction = "L"
+                    })
+                    .onEnded({ _ in
+                        direction = "N"
+                    })
+            )
             Button{
                 
             } label: {
@@ -35,6 +46,15 @@ struct JoyStick: View {
                         .font(.system(size: 50))
                 }
             }
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ _ in
+                        direction = "R"
+                    })
+                    .onEnded({ _ in
+                        direction = "N"
+                    })
+            )
         }
         .offset(x:-window.width*0.35,y:window.height*0.3)
         
