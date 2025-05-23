@@ -11,27 +11,33 @@ struct Dialogue: View {
     let window:CGSize
     let name: String
     let dialogueText: String
+    @State var displayDialogue = true
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundStyle(.black)
-                .opacity(0.8)
-                .frame(width: window.width, height: window.height*0.35)
-            Text(name)
-                .foregroundStyle(.cyan)
-                .fontWeight(.bold)
-                .font(.system(size: 25))
-                .offset(x:-window.width*0.45,y:-window.height*0.1)
-            Text(dialogueText)
-                .foregroundStyle(.white)
-                .offset(x:0,y:window.height*0.05)
-                .font(.system(size: 20))
-            Image(systemName: "chevron.down")
-                .foregroundStyle(.cyan)
-                .offset(x:window.width*0.45,y:window.height*0.15)
-                .font(.system(size: 20))
+        if displayDialogue {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(.black)
+                    .opacity(0.8)
+                    .frame(width: window.width, height: window.height*0.35)
+                    .onTapGesture(count: 1) {
+                        displayDialogue = false
+                    }
+                Text(name)
+                    .foregroundStyle(.cyan)
+                    .fontWeight(.bold)
+                    .font(.system(size: 25))
+                    .offset(x:-window.width*0.45,y:-window.height*0.1)
+                Text(dialogueText)
+                    .foregroundStyle(.white)
+                    .offset(x:0,y:window.height*0.05)
+                    .font(.system(size: 20))
+                Image(systemName: "chevron.down")
+                    .foregroundStyle(.cyan)
+                    .offset(x:window.width*0.45,y:window.height*0.15)
+                    .font(.system(size: 20))
+            }
+            .offset(x:0,y:-window.height*0.25)
         }
-        .offset(x:0,y:-window.height*0.25)
     }
 }
 
