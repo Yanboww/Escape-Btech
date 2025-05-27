@@ -31,6 +31,9 @@ struct Dialogue: View {
                     .foregroundStyle(.white)
                     .offset(x:0,y:window.height*0.05)
                     .font(.system(size: 20))
+                    .onTapGesture(count: 1) {
+                        displayDialogue = false
+                    }
                 Image(systemName: "chevron.down")
                     .foregroundStyle(.cyan)
                     .offset(x:window.width*0.45,y:window.height*0.15)

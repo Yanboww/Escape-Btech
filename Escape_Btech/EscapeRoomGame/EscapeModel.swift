@@ -9,6 +9,8 @@ import Foundation
 
 class EscapeModel {
     @Published private(set) var secretCode: [Int] = [0,0,0,0]
+    @Published private(set) var currentTried: [Int] = []
+    @Published private(set) var chancesRemaining = 6
     
     func generateSecretCode(){
         secretCode[0] = Int.random(in: 0..<10)
@@ -17,6 +19,40 @@ class EscapeModel {
         secretCode[3] = Int.random(in: 0..<10)
     }
     
+    func checkCode(current:Int) -> Int{
+        let latest = currentTried.count
+        let supposed = secretCode[latest]
+        if current < supposed {
+            return -1
+        }
+        else if supposed > current {
+            return 1
+        }
+        return 0
+    }
     
+    func appendCode(val:Int) -> String{
+        if chancesRemaining > 0 && currentTried.count < 4 {
+            let result = checkCode(current: val)
+            if result == 0{
+                currentTried.append(val)
+                return "Doing good! You feel that this number must be correct."
+            }
+            else if result > 0 {
+                return "Something tells you this number is too big!"
+            }
+            else {
+                return "Something tell you this number is too small!"
+            }
+        }
+        return ""
+    }
+    
+    func checkGame() -> Bool {
+        if secretCode == currentTried {
+            return true
+        }
+        return false
+    }
     
 }
