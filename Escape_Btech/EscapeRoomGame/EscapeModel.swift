@@ -7,10 +7,11 @@
 
 import Foundation
 
-class EscapeModel {
+class EscapeModel: ObservableObject{
     @Published private(set) var secretCode: [Int] = [0,0,0,0]
     @Published private(set) var currentTried: [Int] = []
     @Published private(set) var chancesRemaining = 6
+    @Published private(set) var gameState = 0
     
     func generateSecretCode(){
         secretCode[0] = Int.random(in: 0..<10)
@@ -22,12 +23,17 @@ class EscapeModel {
     func checkCode(current:Int) -> Int{
         let latest = currentTried.count
         let supposed = secretCode[latest]
+        print(current)
+        print(supposed)
         if current < supposed {
+            print("low")
             return -1
         }
-        else if supposed > current {
+        else if current > supposed {
+            print("high")
             return 1
         }
+        print("neither")
         return 0
     }
     
@@ -39,9 +45,11 @@ class EscapeModel {
                 return "Doing good! You feel that this number must be correct."
             }
             else if result > 0 {
+                chancesRemaining -= 1
                 return "Something tells you this number is too big!"
             }
             else {
+                chancesRemaining -= 1
                 return "Something tell you this number is too small!"
             }
         }
@@ -55,4 +63,15 @@ class EscapeModel {
         return false
     }
     
+    func reduceChances() {
+        chancesRemaining -= 1
+    }
+    
+    func noChances() {
+        gameState = -1
+    }
+    
+    func win(){
+        gameState = 1
+    }
 }
