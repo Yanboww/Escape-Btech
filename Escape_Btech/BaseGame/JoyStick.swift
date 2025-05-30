@@ -19,12 +19,7 @@ struct JoyStick: View {
             } label: {
                 //left
                 ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 80,height: 80)
-                        .foregroundStyle(.blue)
-                    Image(systemName: "arrowshape.backward.fill")
-                        .foregroundStyle(.black)
-                        .font(.system(size: 50))
+                    Image("JOYSTICK (LEFT)").resizable().frame(width:100,height:100)
                 }
             }
             .simultaneousGesture(
@@ -38,17 +33,12 @@ struct JoyStick: View {
                     })
             )
             
-            Button{
+            Button(){
                 
             } label: {
                 //right
                 ZStack{
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 80,height: 80)
-                        .foregroundStyle(.blue)
-                    Image(systemName: "arrowshape.forward.fill")
-                        .foregroundStyle(.black)
-                        .font(.system(size: 50))
+                    Image("JOYSTICK (RIGHT)").resizable().frame(width:100,height:100)
                 }
             }
             .simultaneousGesture(
