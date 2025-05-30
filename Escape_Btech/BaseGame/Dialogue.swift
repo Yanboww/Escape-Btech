@@ -12,9 +12,11 @@ struct Dialogue: View {
     let name: String
     let dialogueText: String
     @State var displayDialogue = true
+    let round: Int
     var body: some View {
-        if displayDialogue {
-            ZStack {
+        let _ = print(round)
+        ZStack {
+            if displayDialogue {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(.black)
                     .opacity(0.8)
@@ -39,11 +41,14 @@ struct Dialogue: View {
                     .offset(x:window.width*0.45,y:window.height*0.15)
                     .font(.system(size: 20))
             }
-            .offset(x:0,y:-window.height*0.25)
+        }
+        .offset(x:0,y:-window.height*0.25)
+        .onChange(of: round){
+            displayDialogue = true
         }
     }
 }
 
 #Preview {
-    Dialogue(window:  CGSize(width: 852,height: 393),name:"Perry", dialogueText: "The meaning of tung tung sahur. 'Tung Tung Sahur' is a traditional custom unique to Indonesia during the month of Ramadan, in which 'Tung Tung' is a onomatopoeic word that imitates the sound of hitting drums")
+    Dialogue(window:  CGSize(width: 852,height: 393),name:"Perry", dialogueText: "The meaning of tung tung sahur. 'Tung Tung Sahur' is a traditional custom unique to Indonesia during the month of Ramadan, in which 'Tung Tung' is a onomatopoeic word that imitates the sound of hitting drums", round: 0)
 }

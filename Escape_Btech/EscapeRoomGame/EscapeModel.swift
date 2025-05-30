@@ -23,17 +23,12 @@ class EscapeModel: ObservableObject{
     func checkCode(current:Int) -> Int{
         let latest = currentTried.count
         let supposed = secretCode[latest]
-        print(current)
-        print(supposed)
         if current < supposed {
-            print("low")
             return -1
         }
         else if current > supposed {
-            print("high")
             return 1
         }
-        print("neither")
         return 0
     }
     

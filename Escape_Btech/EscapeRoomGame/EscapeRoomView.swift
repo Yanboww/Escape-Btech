@@ -9,18 +9,11 @@ import SwiftUI
 
 struct EscapeRoomView: View {
     @ObservedObject var model: EscapeModel = EscapeModel()
-    @State private var displayedArr : [Int] = []
+    @State private var displayedArr : [Int] = [0,0]
     @State private var message = ""
+    @State private var rounds = 0
     var body: some View {
         GeometryReader { geometry in
-            if model.chancesRemaining == 0 {
-                let _ = model.noChances()
-                let _ = print("lose")
-            }
-            if model.checkGame(){
-                let _ = model.win()
-                let _ = print("win")
-            }
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 700, height: 300)
@@ -31,6 +24,8 @@ struct EscapeRoomView: View {
                         ForEach(displayedArr, id: \.self){guess in
                             Text(String(guess))
                                 .foregroundStyle(.white)
+                                .font(.system(size: 30))
+                                .offset(x:(-geometry.size.width*0.115),y:geometry.size.height*0.09)
                         }
                     }
                     HStack{
@@ -45,6 +40,7 @@ struct EscapeRoomView: View {
                             Button{
                                 message = model.appendCode(val: i)
                                 displayedArr = model.currentTried
+                                rounds += 1
                             } label: {
                                 ZStack{
                                     Circle()
@@ -55,23 +51,6 @@ struct EscapeRoomView: View {
                             }
                         }
                     }
-                    Button{
-                        let win = model.checkGame()
-                        if win {
-                            let _ = print("Win")
-                        }
-                        else {
-                            if model.chancesRemaining > 0 {
-                                message = "Try Again!"
-                                model.reduceChances()
-                            }
-                            else{
-                                let _ = print("lose")
-                            }
-                        }
-                    } label: {
-                        Text("Submit")
-                    }
                 }
             }
             .offset(x:geometry.size.width*0.01,y:geometry.size.height*0.1)
@@ -80,8 +59,16 @@ struct EscapeRoomView: View {
                 print(model.secretCode)
             }
             if model.chancesRemaining > 0 && !message.isEmpty {
-                Dialogue(window: geometry.size, name: "Lock", dialogueText: message)
+                Dialogue(window: geometry.size, name: "Lock", dialogueText: message, round: rounds)
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
+            }
+            if model.chancesRemaining == 0 {
+                let _ = model.noChances()
+                let _ = print("lose")
+            }
+            if model.checkGame(){
+                let _ = model.win()
+                let _ = print("win")
             }
         }
     }
