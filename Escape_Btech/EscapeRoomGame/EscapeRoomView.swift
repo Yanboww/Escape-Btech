@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EscapeRoomView: View {
     @ObservedObject var model: EscapeModel = EscapeModel()
-    @State private var displayedArr : [Int] = [0,0]
+    @State private var displayedArr : [Int] = []
     @State private var message = ""
     @State private var rounds = 0
     var body: some View {
@@ -17,22 +17,20 @@ struct EscapeRoomView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(width: 700, height: 300)
+                    .foregroundStyle(.gray)
                 VStack{
                     Text("\(model.chancesRemaining)")
                         .foregroundStyle(.red)
-                    HStack{
-                        ForEach(displayedArr, id: \.self){guess in
-                            Text(String(guess))
-                                .foregroundStyle(.white)
-                                .font(.system(size: 30))
-                                .offset(x:(-geometry.size.width*0.115),y:geometry.size.height*0.09)
-                        }
-                    }
-                    HStack{
-                        ForEach(0..<4){ i in
-                            Text("___")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 30))
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 10)
+                            .frame(width: 150,height: 60)
+                        HStack{
+                            ForEach(displayedArr, id: \.self){guess in
+                                Text(String(guess))
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 30))
+                                    .offset(x:0,y:geometry.size.height*0.02)
+                            }
                         }
                     }
                     HStack{
