@@ -36,6 +36,7 @@ struct BaseGameView: View {
                 image2.resizable().ignoresSafeArea().position(x: xPos + 750, y: yPos)
                 SpriteView(scene:scene, options: [.allowsTransparency]).ignoresSafeArea()
                 if(xPos <= -400){
+                    Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).offset(x:0,y:-100)
                     Text("Hi")
                 }
                 joystick
@@ -44,7 +45,7 @@ struct BaseGameView: View {
             }
             
             
-        }
+        }.ignoresSafeArea()
     }
         
 }
