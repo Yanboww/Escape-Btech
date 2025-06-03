@@ -9,35 +9,46 @@ import Foundation
 import SwiftUI
 import SpriteKit
 class BaseGameScene: SKScene{
-    private let player = SKSpriteNode(imageNamed: "tile000")
-    var direction: Int = 0
+    
+    private var player = SKSpriteNode(imageNamed: "tile000")
+    @Binding var direction: Int
+    init(direction:Binding<Int>, size:CGSize){
+        _direction = direction
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView){
-        //setUpScene()
+        setUpScene()
         setUpPlayer()
     }
     
     //sets up scene for landscape device
     private func setUpScene(){
-        backgroundColor = .clear
+        self.backgroundColor = .clear
+        view?.allowsTransparency = true
+        size = CGSize(width: 800, height: 300)
     }
     
     override func update(_ currentTime: TimeInterval){
         if direction == 1 {
-            player.zPosition = 0
+            //player.zRotation = 180
             runAnimation()
         }
         else if direction == -1 {
-            player.zPosition = 180
+            //player.zRotation = 180
             runAnimation()
         }
     }
+    
     //sets up player
     private func setUpPlayer(){
-        player.position = CGPoint(x:0 ,y: 0)
-        /*player.zPosition = 4
+        player.position = CGPoint(x:100 ,y: 100)
         player.setScale(3)
-        idleAnimation()**/
+        idleAnimation()
         addChild(player)
     }
     
@@ -64,8 +75,5 @@ class BaseGameScene: SKScene{
         let repeatForever = SKAction.repeatForever(animation)
         player.run(repeatForever)
     }
-    
-
-    
     
 }

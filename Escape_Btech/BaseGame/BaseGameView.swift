@@ -8,7 +8,6 @@
 import SwiftUI
 import SpriteKit
 struct BaseGameView: View {
-    private let  scene = BaseGameScene()
     @State var xPos: CGFloat = 0
     @State var yPos: CGFloat = 200
     @State var joyStickDirection: Int = 0
@@ -18,9 +17,10 @@ struct BaseGameView: View {
         @State var image1 = Image("download")
             
         @State var image2 = Image("download")
-        SpriteView(scene: scene).ignoresSafeArea()
-        /*GeometryReader { geometry in
+        GeometryReader { geometry in
+            let  scene = BaseGameScene(direction: $joyStickDirection, size: geometry.size)
             let joystick = JoyStick(window: geometry.size, direction: $joyStickDirection)
+    
             
             ZStack{
                 image1.resizable().ignoresSafeArea().position(x: xPos, y:yPos)
@@ -34,17 +34,17 @@ struct BaseGameView: View {
                         
                     }
                 image2.resizable().ignoresSafeArea().position(x: xPos + 750, y: yPos)
-                SpriteView(scene:scene, options: [.allowsTransparency]).ignoresSafeArea()
                 if(xPos <= -400){
                     Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).offset(x:0,y:-100)
                     Text("Hi")
                 }
                 joystick
-                
+                SpriteView(scene:scene, options: [.allowsTransparency])
+                    .offset(x:300,y:0)
             }
             
-            
-        }.ignoresSafeArea()**/
+        }.ignoresSafeArea()
+        
         
     }
         
