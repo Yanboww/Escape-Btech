@@ -10,7 +10,8 @@ import SwiftUI
 struct EscapeRoomView: View {
     @ObservedObject var model: EscapeModel = EscapeModel()
     @State private var displayedArr : [Int] = []
-    @State private var message = ""
+    @State private var message = "Guess secret code! If the red number reaches 0, you lose."
+    @State private var showMessage = true
     @State private var rounds = 0
     var body: some View {
         GeometryReader { geometry in
@@ -57,7 +58,7 @@ struct EscapeRoomView: View {
                 print(model.secretCode)
             }
             if model.chancesRemaining > 0 && !message.isEmpty {
-                Dialogue(window: geometry.size, name: "Lock", dialogueText: message, round: rounds)
+                Dialogue(window: geometry.size, name: "Lock", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"Penny")
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
             }
             if model.chancesRemaining == 0 {
