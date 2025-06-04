@@ -9,54 +9,55 @@ import SwiftUI
 
 struct JoyStick: View {
     var window:CGSize
-    @State var direction = 0
+    @Binding var direction: Int
+    @State var imageJumps = 0
+    @State var timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
     var body: some View {
-        let _ = print(direction)
-        HStack {
-            Button{
-                
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 80,height: 80)
-                        .foregroundStyle(.blue)
-                        .opacity(0.5)
-                    Image(systemName: "arrowshape.backward.fill")
-                        .foregroundStyle(.black)
-                        .font(.system(size: 50))
+        ZStack {
+            Image("JOYSTICK (BOX)")
+                .resizable()
+                .frame(width: 250, height: 125)
+                .offset()
+            HStack {
+                Button{
+                    
+                } label: {
+                    //left
+                    ZStack {
+                        Image("JOYSTICK (LEFT)").resizable().frame(width:100,height:100)
+                    }
                 }
-            }
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ _ in
-                        direction = -1
-                    })
-                    .onEnded({ _ in
-                        direction = 0
-                    })
-            )
-            Button{
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged({ _ in
+                            direction = -1
+                            
+                        })
+                        .onEnded({ _ in
+                            direction = 0
+                        })
+                )
                 
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 5)
-                        .frame(width: 80,height: 80)
-                        .foregroundStyle(.blue)
-                        .opacity(0.5)
-                    Image(systemName: "arrowshape.forward.fill")
-                        .foregroundStyle(.black)
-                        .font(.system(size: 50))
+                Button(){
+                    
+                } label: {
+                    //right
+                    ZStack{
+                        Image("JOYSTICK (RIGHT)").resizable().frame(width:100,height:100)
+                    }
                 }
+                .simultaneousGesture(
+                    DragGesture(minimumDistance: 0)
+                        .onChanged({ _ in
+                            direction = 1
+                            
+                            
+                        })
+                        .onEnded({ _ in
+                            direction = 0
+                        })
+                )
             }
-            .simultaneousGesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ _ in
-                        direction = 1
-                    })
-                    .onEnded({ _ in
-                        direction = 0
-                    })
-            )
         }
         .offset(x:-window.width*0.35,y:window.height*0.3)
         
@@ -64,5 +65,13 @@ struct JoyStick: View {
 }
 
 #Preview {
-    JoyStick(window: CGSize(width: 852,height: 393))
+    struct Preview: View {
+        @State var val = 0
+        var body: some View {
+            JoyStick(window: CGSize(width: 852,height: 393), direction: $val)
+        }
+    }
+    return Preview()
 }
+
+

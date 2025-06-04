@@ -9,66 +9,71 @@ import Foundation
 import SwiftUI
 import SpriteKit
 class BaseGameScene: SKScene{
+    
+    private var player = SKSpriteNode(imageNamed: "tile000")
+    @Binding var direction: Int
+    init(direction:Binding<Int>, size:CGSize){
+        _direction = direction
+        super.init(size: size)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func didMove(to view: SKView){
-        
+        setUpScene()
+        setUpPlayer()
     }
     
     //sets up scene for landscape device
     private func setUpScene(){
-        backgroundColor = SKColor(.black)
-        size = view!.bounds.size
+        self.backgroundColor = .clear
+        view?.allowsTransparency = true
+        size = CGSize(width: 800, height: 300)
+    }
+    
+    override func update(_ currentTime: TimeInterval){
+        if direction == 1 {
+            //player.zRotation = 180
+            runAnimation()
+        }
+        else if direction == -1 {
+            //player.zRotation = 180
+            runAnimation()
+        }
     }
     
     //sets up player
     private func setUpPlayer(){
-        
-    }
-    //sets up background
-    private func  setupBackground(imageName: String, duration: Double, zPos: CGFloat, scale: CGFloat){
-        let numCopies = determineNumberOfCopies(imageName: imageName, scale: scale)
-        for i in 0..<numCopies{
-            let layer = SKSpriteNode(imageNamed: imageName)
-            
-            let heightRatio = size.height / layer.size.height
-            let layerHeight = size.height * scale
-            let layerWidth = layer.size.width * heightRatio * scale
-            let layerSize = CGSize(width: layerWidth, height: layerHeight)
-            layer.size=layerSize
-            
-            
-            layer.position = CGPoint(x: layerSize.width * CGFloat(i), y: 0)
-            layer.anchorPoint = .zero
-            layer.zPosition = zPos
-            
-            
-            let move = SKAction.moveBy(x: -layer.size.width, y:0, duration: duration)
-            let wrap = SKAction.moveBy(x: layer.size.width, y:0, duration: 0)
-            let sequence = SKAction.sequence([move,wrap])
-            let moveForever = SKAction.repeatForever(sequence)
-            layer.run(moveForever)
-            
-            addChild(layer)
-        }
-        
+        player.position = CGPoint(x:100 ,y: 100)
+        player.setScale(3)
+        idleAnimation()
+        addChild(player)
     }
     
-    //returns number of copies based on size of image
-    private func determineNumberOfCopies(imageName: String, scale:CGFloat) -> Int{
-            let layer = SKSpriteNode(imageNamed: imageName)
-            
-            let heightRatio = size.height / layer.size.height
-            let layerHeight = size.height * scale
-            let layerWidth = layer.size.width * heightRatio * scale
-            let layerSize = CGSize(width: layerWidth, height: layerHeight)
-            layer.size=layerSize
-            
-            let howManyPartiallyFit = Int(ceil(size.width / layerSize.width))
-            
-            let howManyNeeded = howManyPartiallyFit + 1
-            
-            return howManyNeeded
+    private func idleAnimation(){
+        let textureAtlas = SKTextureAtlas(named: "MasonIdle")
+        var playerAnimation = [SKTexture]()
+        for i in 0..<textureAtlas.textureNames.count {
+            let name = "tile00\(i)"
+            playerAnimation.append(textureAtlas.textureNamed(name))
         }
-
+        let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.15)
+        let repeatForever = SKAction.repeatForever(animation)
+        player.run(repeatForever)
+    }
     
+    private func runAnimation(){
+        let textureAtlas = SKTextureAtlas(named: "MasonRun")
+        var playerAnimation = [SKTexture]()
+        for i in 0..<textureAtlas.textureNames.count {
+            let name = "run00\(i)"
+            playerAnimation.append(textureAtlas.textureNamed(name))
+        }
+        let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.15)
+        let repeatForever = SKAction.repeatForever(animation)
+        player.run(repeatForever)
+    }
     
 }
