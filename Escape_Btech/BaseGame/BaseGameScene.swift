@@ -10,7 +10,7 @@ import SwiftUI
 import SpriteKit
 class BaseGameScene: SKScene{
     
-    private var player = SKSpriteNode(imageNamed: "tile000")
+    private var player = SKSpriteNode(imageNamed: "idle000")
     @Binding var direction: Int
     init(direction:Binding<Int>, size:CGSize){
         _direction = direction
@@ -35,19 +35,19 @@ class BaseGameScene: SKScene{
     
     override func update(_ currentTime: TimeInterval){
         if direction == 1 {
-            //player.zRotation = 180
-            runAnimation()
+            player.xScale = 0.20
+            //runAnimation()
         }
         else if direction == -1 {
-            //player.zRotation = 180
-            runAnimation()
+            player.xScale = -0.20
+            //runAnimation()
         }
     }
     
     //sets up player
     private func setUpPlayer(){
         player.position = CGPoint(x:100 ,y: 100)
-        player.setScale(3)
+        player.setScale(0.2)
         idleAnimation()
         addChild(player)
     }
@@ -56,7 +56,7 @@ class BaseGameScene: SKScene{
         let textureAtlas = SKTextureAtlas(named: "MasonIdle")
         var playerAnimation = [SKTexture]()
         for i in 0..<textureAtlas.textureNames.count {
-            let name = "tile00\(i)"
+            let name = "idle00\(i)"
             playerAnimation.append(textureAtlas.textureNamed(name))
         }
         let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.15)

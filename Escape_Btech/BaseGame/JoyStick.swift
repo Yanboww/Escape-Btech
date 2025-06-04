@@ -16,7 +16,7 @@ struct JoyStick: View {
         ZStack {
             Image("JOYSTICK (BOX)")
                 .resizable()
-                .frame(width: 250, height: 125)
+                .frame(width: 250, height: 150)
                 .offset()
             HStack {
                 Button{
