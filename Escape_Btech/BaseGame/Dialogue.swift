@@ -36,10 +36,10 @@ struct Dialogue: View {
                     .offset(x:-window.width*0.24,y:-window.height*0.12)
                 Text(dialogueText)
                     .foregroundStyle(.white)
-                    .offset(x:window.width*0.05,y:window.height*0.05)
-                    .font(Font.custom("pixel", size: 20))
+                    .offset(x:window.width*0.06,y:window.height*0.05)
+                    .font(Font.custom("dogica", size: 15))
                     .lineLimit(nil)
-                    .frame(width: 500)
+                    .frame(width: 600)
                     .onTapGesture(count: 1) {
                         displayDialogue = false
                     }
