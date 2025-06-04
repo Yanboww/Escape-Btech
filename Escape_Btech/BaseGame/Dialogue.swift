@@ -25,29 +25,28 @@ struct Dialogue: View {
                     .onTapGesture(count: 1) {
                         displayDialogue = false
                     }
-                HStack {
-                    Image(image)
-                        .resizable()
-                        .frame(width: 200,height: 200)
-                    ZStack{
-                        Text(name)
-                            .foregroundStyle(.cyan)
-                            .fontWeight(.bold)
-                            .font(.system(size: 25))
-                            .offset(x:-window.width*0.34,y:-window.height*0.1)
-                        Text(dialogueText)
-                            .foregroundStyle(.white)
-                            .offset(x:-window.width*0.03,y:window.height*0.05)
-                            .font(.system(size: 20))
-                            .onTapGesture(count: 1) {
-                                displayDialogue = false
-                            }
-                        Image(systemName: "chevron.down")
-                            .foregroundStyle(.cyan)
-                            .offset(x:window.width*0.3,y:window.height*0.15)
-                            .font(.system(size: 20))
+                Image(image)
+                    .resizable()
+                    .frame(width: 200,height: 200)
+                    .offset(x:-window.width*0.4,y:0)
+                Text(name)
+                    .foregroundStyle(.cyan)
+                    .fontWeight(.bold)
+                    .font(.system(size: 25))
+                    .offset(x:-window.width*0.24,y:-window.height*0.12)
+                Text(dialogueText)
+                    .foregroundStyle(.white)
+                    .offset(x:window.width*0.05,y:window.height*0.05)
+                    .font(.system(size: 20))
+                    .lineLimit(nil)
+                    .frame(width: 500)
+                    .onTapGesture(count: 1) {
+                        displayDialogue = false
                     }
-                }
+                Image(systemName: "chevron.down")
+                    .foregroundStyle(.cyan)
+                    .offset(x:window.width*0.4,y:window.height*0.15)
+                    .font(.system(size: 20))
                 
             }
         }
