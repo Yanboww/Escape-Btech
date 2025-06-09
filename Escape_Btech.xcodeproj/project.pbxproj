@@ -10,22 +10,9 @@
 		3F523D0A2DDCB352008C3C40 /* Escape_Btech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Escape_Btech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		3FAC87162DF31CA500FC234C /* Exceptions for "Escape_Btech" folder in "Escape_Btech" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"Escape-Btech-Info.plist",
-			);
-			target = 3F523D092DDCB352008C3C40 /* Escape_Btech */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3F523D0C2DDCB352008C3C40 /* Escape_Btech */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				3FAC87162DF31CA500FC234C /* Exceptions for "Escape_Btech" folder in "Escape_Btech" target */,
-			);
 			path = Escape_Btech;
 			sourceTree = "<group>";
 		};
