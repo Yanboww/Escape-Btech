@@ -17,6 +17,7 @@ struct JoyStick: View {
             Image("JOYSTICK (BOX)")
                 .resizable()
                 .frame(width: 250, height: 150)
+                .opacity(0.75)
                 .offset()
             HStack {
                 Button{
@@ -25,6 +26,7 @@ struct JoyStick: View {
                     //left
                     ZStack {
                         Image("JOYSTICK (LEFT)").resizable().frame(width:100,height:100)
+                            .opacity(0.75)
                     }
                 }
                 .simultaneousGesture(
@@ -44,6 +46,7 @@ struct JoyStick: View {
                     //right
                     ZStack{
                         Image("JOYSTICK (RIGHT)").resizable().frame(width:100,height:100)
+                            .opacity(0.75)
                     }
                 }
                 .simultaneousGesture(
