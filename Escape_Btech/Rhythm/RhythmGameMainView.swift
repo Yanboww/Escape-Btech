@@ -46,7 +46,7 @@ struct RhythmGameMainView: View {
             VStack {
                 Text("Score: \(model.score)")
                     .foregroundStyle(.white)
-                    .font(.system(size: 20))
+                    .font(Font.custom("pixel", size: 20))
                     .padding()
                 Spacer()
             }
@@ -54,7 +54,7 @@ struct RhythmGameMainView: View {
             if model.gameOver {
                 if model.isWon {
                     Text("You Win!")
-                        .font(.system(size: 75, design: .monospaced))
+                        .font(Font.custom("pixel", size: 75))
                         .foregroundStyle(.green)
                         .shadow(color: .black, radius: 1.5, x: 1, y: 1)
                         .onAppear {
@@ -62,7 +62,7 @@ struct RhythmGameMainView: View {
                         }
                 } else {
                     Text("You Lose...")
-                        .font(.system(size: 75, design: .monospaced))
+                        .font(Font.custom("pixel", size: 75))
                         .foregroundStyle(.red)
                         .shadow(color: .black, radius: 1.5, x: 1, y: 1)
                         .onAppear {
