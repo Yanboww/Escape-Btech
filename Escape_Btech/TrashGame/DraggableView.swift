@@ -43,7 +43,7 @@ struct DraggableView: View {
         switch imageRand {
         case 0:
             image = Image("MILK CARTON")
-            type = 1
+            type = 2
             frameDimension = CGPoint(x:438/4,y:578/4)
         case 1:
             image = Image("PIZZA")
