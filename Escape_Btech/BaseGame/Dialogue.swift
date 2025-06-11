@@ -19,6 +19,7 @@ struct Dialogue: View {
         ZStack {
             if displayDialogue {
                 RoundedRectangle(cornerRadius: 10)
+                    .foregroundStyle(.black)
                     .opacity(0.8)
                     .frame(width: window.width, height: window.height*0.34)
                     .onTapGesture(count: 1) {
