@@ -23,6 +23,7 @@ struct MainMenuView: View {
                     .ignoresSafeArea()
                     .aspectRatio(contentMode: .fill)
                     .offset(x: -backgroundX)
+                    .opacity(0.5)
                     .onAppear {
                         withAnimation(.linear(duration: 5)) {
                             backgroundX = geometry.size.width
@@ -37,18 +38,11 @@ struct MainMenuView: View {
                 VStack {
                     HStack {
                         ZStack {
-                            Rectangle()
-                                .ignoresSafeArea()
-                                .foregroundStyle(.white)
-                                .frame(width: 800, height: 100)
-                                .opacity(0.5)
-                                .clipShape(RoundedRectangle(cornerRadius: 10))
-                                .offset(x: -450)
-                            Text("Escape Brooklyn Tech")
+                            Text("BROOKLOUT TECH")
                                 .font(Font.custom("pixel", size: 75))
                                 .foregroundStyle(.black)
                                 .padding()
-                                .offset(x: -450)
+                                .offset(x: -450, y: 40)
                         }
                     }
                     Button{
@@ -59,10 +53,10 @@ struct MainMenuView: View {
                         Image("Button")
                             .resizable()
                             .frame(width: 300,height: 100)
-                        Text("Play")
+                        Text("PLAY")
                             .foregroundStyle(.white)
                             .font(Font.custom("Pixel", size: 50))
-                            .offset(x:-geometry.size.width*0.27,y:0)
+                            .offset(x:-geometry.size.width*0.31,y:0)
                         
                     }
                     .offset(x:-geometry.size.width*0.50,y:geometry.size.height*0.15)

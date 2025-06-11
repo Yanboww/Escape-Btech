@@ -65,7 +65,7 @@ struct RhythmGameMainView: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 200)
                             .onTapGesture {
-                                if model.isWon && level < 2{
+                                if model.isWon && level < 2 {
                                     level = 2
                                 }
                                 level = 2
