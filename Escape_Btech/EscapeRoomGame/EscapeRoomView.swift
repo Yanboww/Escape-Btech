@@ -106,13 +106,24 @@ struct EscapeRoomView: View {
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
             }
             if model.checkGame() {
-                Button{
-                    moveOn = true
-                } label: {
-                    Image("Key")
-                        .resizable()
-                        .frame(width: 600,height: 250)
-                        .offset(x:geometry.size.width*0.01,y:geometry.size.height*0.4)
+                ZStack{
+                    Rectangle()
+                        .ignoresSafeArea()
+                        .frame(width: geometry.size.width,height: geometry.size.height)
+                        .opacity(0.8)
+                    Text("You Win")
+                        .font(Font.custom("pixel", size: 60))
+                        .foregroundStyle(.white)
+                        .offset(x:0,y:-geometry.size.height*0.3)
+                    Button{
+                        moveOn = true
+                    } label: {
+                        Image("Key")
+                            .resizable()
+                            .frame(width: 600,height: 250)
+                            .offset(x:0,y:geometry.size.height*0.15)
+                    }
+
                 }
             }
         }
