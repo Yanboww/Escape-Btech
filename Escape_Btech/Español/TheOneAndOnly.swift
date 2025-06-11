@@ -9,15 +9,10 @@ struct TheOneAndOnly: View
     @State private var opacityR: Double = 0
     @State private var index: Int = 0
     @State private var lastConvo: Bool = false
-    @State private var reset:Bool = false
-    private var dialogue: [Dialogue] =
-    [
-        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?"),
-        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "¿Y qué ganas tú con esta llave?"),
-        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "¿Y si no quiero darte la llave?"),
-        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "I guess it doesn’t hurt me to give you the key."),
-        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!")
-    ]
+    @State private var reset: Bool = false
+    @State private var penny: String = "Penny"
+    @State private var boolean: Bool = true
+    @State private var opacityV: Double = 0
     private var options: [String] =
     [
         "Eres una persona increíble y sé que harás lo correcto. Confío en ti.",
@@ -42,24 +37,43 @@ struct TheOneAndOnly: View
     {
         ZStack
         {
-            dialogue[index]
-                .offset(y: -30)
+            let dialogue: [Dialogue] =
+            [
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: penny),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y qué ganas tú con esta llave?", displayDialogue: $boolean, round: 1, image: penny),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y si no quiero darte la llave?", displayDialogue: $boolean, round: 1, image: penny),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "I guess it doesn’t hurt me to give you the key.", displayDialogue: $boolean, round: 1, image: penny),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!", displayDialogue: $boolean, round: 1, image: penny)
+            ]
+            var width: CGFloat = CGFloat(persuasion * 50)
             
-            HStack
-            {
-                Image(systemName: "arrow.left")
-                    .padding(.trailing)
-                Image(systemName: "arrow.left")
-            }
+            dialogue[index]
+                .offset(y:20)
+            
+            Capsule()
+                .frame(width: 300, height: 20)
+                .foregroundStyle(.gray)
+                .offset(y:200)
+            
+            Capsule()
+                .frame(width: width, height: 20)
+                .foregroundStyle(.red)
+                .offset(y:200)
                     
             HStack
             {
                 Button(options[0 + 4 * iteration])
                 {
+                    if persuasion > 1 {penny = "Penny2"}
+                    
                     if lastConvo
                     {
                         iteration += 1
-                        if persuasion >= 3 {index += 1}
+                        if persuasion >= 3
+                        {
+                            index += 1
+                            opacityV = 1
+                        }
                         else
                         {
                             index += 2
@@ -84,15 +98,23 @@ struct TheOneAndOnly: View
                         opacity = 0
                     }
                 }
+                .frame(width: 350, height: 200)
+                .offset(y:-45)
                 .disabled(!visibile)
                 .opacity(opacity)
                 
                 Button(options[1 + 4 * iteration])
                 {
+                    if persuasion > 1 {penny = "Penny2"}
+                    
                     if lastConvo
                     {
                         iteration += 1
-                        if persuasion >= 3 {index += 1}
+                        if persuasion >= 3
+                        {
+                            index += 1
+                            opacityV = 1
+                        }
                         else
                         {
                             index += 2
@@ -117,6 +139,8 @@ struct TheOneAndOnly: View
                         if iteration == 2 {lastConvo = true}
                     }
                 }
+                .frame(width: 350, height: 200)
+                .offset(y:-45)
                 .disabled(!visibile)
                 .opacity(opacity)
             }
@@ -126,10 +150,16 @@ struct TheOneAndOnly: View
             {
                 Button(options[2 + 4 * iteration])
                 {
+                    if persuasion > 1 {penny = "Penny2"}
+                    
                     if lastConvo
                     {
                         iteration += 1
-                        if persuasion >= 3 {index += 1}
+                        if persuasion >= 3
+                        {
+                            index += 1
+                            opacityV = 1
+                        }
                         else
                         {
                             index += 2
@@ -153,15 +183,23 @@ struct TheOneAndOnly: View
                         opacity = 0
                     }
                 }
+                .frame(width: 350, height: 200)
+                .offset(y:-20)
                 .disabled(!visibile)
                 .opacity(opacity)
                 
                 Button(options[3 + 4 * iteration])
                 {
+                    if persuasion > 1 {penny = "Penny2"}
+                    
                     if lastConvo
                     {
                         iteration += 1
-                        if persuasion >= 3 {index += 1}
+                        if persuasion >= 3
+                        {
+                            index += 1
+                            opacityV = 1
+                        }
                         else
                         {
                             index += 2
@@ -185,9 +223,24 @@ struct TheOneAndOnly: View
                         if iteration == 2 {lastConvo = true}
                     }
                 }
+                .frame(width: 350, height: 200)
+                .offset(y:-20)
                 .disabled(!visibile)
                 .opacity(opacity)
             }
+            .offset(y:150)
+            
+            Image("Image")
+                .resizable()
+                .frame(width: 250, height: 100)
+                .offset(y:50)
+                .opacity(opacityV)
+            
+            Image("Key")
+                .resizable()
+                .frame(width: 150, height: 75)
+                .offset(y:125)
+                .opacity(opacityV)
         }
         
         Button("Reset")
@@ -200,6 +253,7 @@ struct TheOneAndOnly: View
             index = 0
             lastConvo = false
             reset = false
+            opacityV = 0
         }
         .disabled(!reset)
         .opacity(opacityR)
