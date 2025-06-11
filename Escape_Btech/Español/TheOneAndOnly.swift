@@ -9,10 +9,22 @@ struct TheOneAndOnly: View
     @State private var opacityR: Double = 0
     @State private var index: Int = 0
     @State private var lastConvo: Bool = false
+<<<<<<< HEAD
     @State private var reset: Bool = false
     @State private var penny: String = "Penny"
     @State private var boolean: Bool = true
     @State private var opacityV: Double = 0
+=======
+    @State private var reset:Bool = false
+    private var dialogue: [Dialogue] =
+    [
+        /*Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?"),
+        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "¿Y qué ganas tú con esta llave?"),
+        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "¿Y si no quiero darte la llave?"),
+        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "I guess it doesn’t hurt me to give you the key."),
+        Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!")**/
+    ]
+>>>>>>> a3d762c2aef7ba7f58e6baa9fc9f423179cbde17
     private var options: [String] =
     [
         "Eres una persona increíble y sé que harás lo correcto. Confío en ti.",
