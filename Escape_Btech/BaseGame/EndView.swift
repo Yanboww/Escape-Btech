@@ -15,9 +15,15 @@ struct EndView: View {
                     .foregroundStyle(.black)
                     .ignoresSafeArea()
                     .frame(width: geometry.size.width,height: geometry.size.height)
-                Text("End of part 1...")
-                    .foregroundStyle(.red)
-                    .font(Font.custom("dogica", size: 40))
+                VStack {
+                    Text("End of part 1...")
+                        .foregroundStyle(.red)
+                        .font(Font.custom("dogica", size: 40))
+                    Text("Thanks for playing")
+                        .font(Font.custom("dogica", size: 40))
+                        .foregroundStyle(.white)
+                }
+                    
             }
         }
     }

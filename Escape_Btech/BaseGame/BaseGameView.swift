@@ -49,9 +49,6 @@ struct BaseGameView: View {
                     Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).position(x:CGFloat(exclamationPoint),y:100)
                     Button{
                         showGame.toggle()
-                        if level == 1{
-                            level = 3
-                        }
                     }
                     label: {
                         Image("InteractButton")

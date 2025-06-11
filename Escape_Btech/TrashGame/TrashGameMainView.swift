@@ -70,7 +70,7 @@ struct TrashGameMainView: View {
                     DraggableView(image: Image("MILK CARTON"), type: 1,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
                     DraggableView(image: Image("Spoon"), type: 2,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
                 }
-                if(trashGameModel.score >= 500){
+                if(trashGameModel.score >= 300){
                     Button(action: {
                         level = level + 1
                         print(level)
