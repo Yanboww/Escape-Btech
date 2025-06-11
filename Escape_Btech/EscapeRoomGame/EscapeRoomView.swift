@@ -102,7 +102,7 @@ struct EscapeRoomView: View {
                 print(model.secretCode)
             }
             if model.chancesRemaining > 0 && !message.isEmpty {
-                Dialogue(window: geometry.size, name: "Mysterious Voice", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"")
+                Dialogue(window: geometry.size, name: "PENNY", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"Penny")
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
             }
             if model.checkGame() {

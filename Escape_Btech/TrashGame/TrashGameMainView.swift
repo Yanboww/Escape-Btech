@@ -28,8 +28,8 @@ struct TrashGameMainView: View {
         @State var checkResetTimer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
         GeometryReader{geometry in
             
-            let startDialogue = Dialogue(window: geometry.size, name: "Supreme Leader Newman", dialogueText: "The Key is hidden throughout the trash in the Cafe.You only have a few minutes before you're locked in!Find the key.", displayDialogue: $startMessageShowing, round: 0, image: "NEWMAN")
-            let resetDialogue = Dialogue(window: geometry.size, name: "Supreme Leader Newman", dialogueText: "YOU'RE LOCKED IN THIS HELL FOREVER! Tap to play again", displayDialogue: $resetMessageShowing, round: 0, image: "NEWMAN")
+            let startDialogue = Dialogue(window: geometry.size, name: "PENNY", dialogueText: "The Key is hidden throughout the trash in the Cafe.You only have a few minutes before you're locked in!Find the key.", displayDialogue: $startMessageShowing, round: 0, image: "Penny")
+            let resetDialogue = Dialogue(window: geometry.size, name: "PENNY", dialogueText: "YOU'RE LOCKED IN THIS HELL FOREVER! Tap to play again", displayDialogue: $resetMessageShowing, round: 0, image: "Penny")
             let bgImage = Image("CafeteriaFULL").resizable().ignoresSafeArea().frame(width:4511/2,height:1039/2).position(x:geometry.size.width+CGFloat(backgroundX),y:geometry.size.height-CGFloat(trashGameModel.backgroundPosition[1]))
             
             ZStack{
@@ -78,7 +78,7 @@ struct TrashGameMainView: View {
                         Image("Key").renderingMode(.original)
                        
                     }
-                    Dialogue(window: geometry.size, name: "Supreme Leader Newman", dialogueText: "You have found the key. Good job. Now, Move on to the next floor.", displayDialogue: $playerWon, round: 0, image: "NEWMAN")
+                    Dialogue(window: geometry.size, name: "PENNY", dialogueText: "You have found the key. Good job. Now, Move on to the next floor.", displayDialogue: $playerWon, round: 0, image: "Penny")
                 }
                 
                 if(!startMessageShowing && !resetMessageShowing){

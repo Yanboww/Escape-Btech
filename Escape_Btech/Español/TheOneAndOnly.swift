@@ -11,7 +11,8 @@ struct TheOneAndOnly: View
     @State var index: Int = 0
     @State var lastConvo: Bool = false
     @State var reset: Bool = false
-    @State var penny: String = "Penny"
+    @State var penny: String = "PENNY"
+    @State var pennyImg: String = "Penny"
     @State var boolean: Bool = true
     @State var opacityV: Double = 0
     
@@ -48,15 +49,23 @@ struct TheOneAndOnly: View
         
         ZStack
         {
+            Rectangle()
+                .ignoresSafeArea()
+                .foregroundStyle(.white)
+                .frame(width: 1000,height: .infinity)
+                .offset(x:0,y:100)
             Image("sixthfloorFULL")
                 .resizable()
+                .ignoresSafeArea()
+                .aspectRatio(contentMode: .fill)
+                .opacity(1)
             let dialogue: [Dialogue] =
             [
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: penny),
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y qué ganas tú con esta llave?", displayDialogue: $boolean, round: 1, image: penny),
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y si no quiero darte la llave?", displayDialogue: $boolean, round: 1, image: penny),
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "I guess it doesn’t hurt me to give you the key. Click it to proceed!", displayDialogue: $boolean, round: 1, image: penny),
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!", displayDialogue: $boolean, round: 1, image: penny)
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: pennyImg),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y qué ganas tú con esta llave?", displayDialogue: $boolean, round: 1, image: pennyImg),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y si no quiero darte la llave?", displayDialogue: $boolean, round: 1, image: pennyImg),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "I guess it doesn’t hurt me to give you the key. Click it to proceed!", displayDialogue: $boolean, round: 1, image: pennyImg),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!", displayDialogue: $boolean, round: 1, image: pennyImg)
             ]
             var width: CGFloat = CGFloat(persuasion * 50)
             
@@ -77,7 +86,7 @@ struct TheOneAndOnly: View
             {
                 Button
                 {
-                    if persuasion > 1 {penny = "Penny2"}
+                    if persuasion > 1 {pennyImg = "Penny2"}
                     
                     if lastConvo
                     {
@@ -128,7 +137,7 @@ struct TheOneAndOnly: View
                 
                 Button
                 {
-                    if persuasion > 1 {penny = "Penny2"}
+                    if persuasion > 1 {pennyImg = "Penny2"}
                     
                     if lastConvo
                     {
@@ -183,7 +192,7 @@ struct TheOneAndOnly: View
             {
                 Button
                 {
-                    if persuasion > 1 {penny = "Penny2"}
+                    if persuasion > 1 {pennyImg = "Penny2"}
                     
                     if lastConvo
                     {
@@ -233,7 +242,7 @@ struct TheOneAndOnly: View
                 
                 Button
                 {
-                    if persuasion > 1 {penny = "Penny2"}
+                    if persuasion > 1 {pennyImg = "Penny2"}
                     
                     if lastConvo
                     {
