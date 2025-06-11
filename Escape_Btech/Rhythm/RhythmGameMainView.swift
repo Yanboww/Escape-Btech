@@ -12,7 +12,6 @@ struct RhythmGameMainView: View {
     @State var scoreList: [String] = [""]
     @StateObject var audioPlayerViewModel = AudioPlayerViewModel()
     @Binding var level: Int
-    let gameStatus = Timer.publish(every: 0.008, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack {
             model.displayScored(text: scoreList[scoreList.count - 1])
@@ -53,13 +52,25 @@ struct RhythmGameMainView: View {
             
             if model.gameOver {
                 if model.isWon {
-                    Text("You Win!")
-                        .font(Font.custom("pixel", size: 75))
-                        .foregroundStyle(.green)
-                        .shadow(color: .black, radius: 1.5, x: 1, y: 1)
-                        .onAppear {
-                            audioPlayerViewModel.playOrPause()
-                        }
+                    VStack {
+                        Text("You Win!")
+                            .font(Font.custom("pixel", size: 75))
+                            .foregroundStyle(.green)
+                            .shadow(color: .black, radius: 1.5, x: 1, y: 1)
+                            .onAppear {
+                                audioPlayerViewModel.playOrPause()
+                            }
+                        Image(.key)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200)
+                            .onTapGesture {
+                                if model.isWon && level < 2{
+                                    level = 2
+                                }
+                                level = 2
+                            }
+                    }
                 } else {
                     Text("You Lose...")
                         .font(Font.custom("pixel", size: 75))
@@ -83,12 +94,6 @@ struct RhythmGameMainView: View {
         }
         .onAppear {
             audioPlayerViewModel.playOrPause()
-        }
-        .onReceive(gameStatus) { _ in
-            if model.isWon && level < 2{
-                level = 2
-            }
-            level = 2
         }
     }
 }

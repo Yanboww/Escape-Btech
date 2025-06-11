@@ -21,6 +21,7 @@ struct TrashGameMainView: View {
     @State var score250Passed = false
     @State var score500Passed = false
     @State var playerWon = false
+    @Binding var level: Int
     var body: some View {
         @State var currentTimer = trashGameModel.timers[0].autoconnect()
         @State var trashTimer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -35,27 +36,26 @@ struct TrashGameMainView: View {
                 bgImage.onReceive(checkResetTimer){ _ in
                     if(trashGameModel.score >= 100 && !score100Passed){
                         withAnimation(.linear(duration:0.25)){
-                            backgroundX -= 250
+                            backgroundX -= 725
                             score100Passed  = true
                         }
                         timeCounter = trashGameModel.timerMaxes[1]
                     }
                     else if(trashGameModel.score >= 250 && !score250Passed){
                         withAnimation(.linear(duration:0.25)){
-                            backgroundX -= 250
+                            backgroundX -= 725
                             score250Passed  = true
                         }
                         timeCounter = 40
                        
                     }
                     else if(trashGameModel.score >= 500 && !score500Passed){
-                        withAnimation(.linear(duration:0.25)){
-                            backgroundX -= 250
-                            score500Passed  = true
-                        }
+                        score500Passed = true
                         timeCounter = 999
                         playerWon = true
                     }
+                    
+                    
                 }
                 if(trashGameModel.score < 100 && !playerWon){
                     DraggableView(image: Image("MILK CARTON"), type: 1,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
@@ -71,9 +71,14 @@ struct TrashGameMainView: View {
                     DraggableView(image: Image("Spoon"), type: 2,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
                 }
                 if(trashGameModel.score >= 500){
-                    Image("Key")
+                    Button(action: {
+                        level = level + 1
+                        print(level)
+                    }){
+                        Image("Key").renderingMode(.original)
+                       
+                    }
                     Dialogue(window: geometry.size, name: "Supreme Leader Newman", dialogueText: "You have found the key. Good job. Now, Move on to the next floor.", displayDialogue: $playerWon, round: 0, image: "NEWMAN")
-                    
                 }
                 
                 if(!startMessageShowing && !resetMessageShowing){
@@ -133,5 +138,6 @@ struct TrashGameMainView: View {
 }
 
 #Preview {
-    TrashGameMainView()
+    @Previewable @State var temp = 1
+    TrashGameMainView(level: $temp)
 }
