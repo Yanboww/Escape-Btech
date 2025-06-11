@@ -12,7 +12,7 @@ struct MainMenuView: View {
     @State var index = 0
     @State var opacity = 1
     @State var backgroundX: CGFloat = 0
-    
+    @Binding var level : Int
     let backgrounds: [ImageResource] = [.revisedCafeteriaFULL, .orchestraFULL]
     
     var body: some View {
@@ -42,6 +42,21 @@ struct MainMenuView: View {
                             .padding()
                             .offset(x: -450)
                     }
+                    Button{
+                        if level < 1 {
+                            level = 1
+                        }
+                    } label: {
+                        Image("Button")
+                            .resizable()
+                            .frame(width: 300,height: 100)
+                        Text("Play")
+                            .foregroundStyle(.white)
+                            .font(Font.custom("Pixel", size: 50))
+                            .offset(x:-geometry.size.width*0.27,y:0)
+                        
+                    }
+                    .offset(x:-geometry.size.width*0.50,y:geometry.size.height*0.15)
                     Spacer()
                 }
             }
@@ -60,5 +75,11 @@ struct MainMenuView: View {
 }
 
 #Preview {
-    MainMenuView()
+    struct Preview: View {
+        @State var val = 0
+        var body: some  View {
+            MainMenuView(level: $val)
+        }
+    }
+    return Preview()
 }

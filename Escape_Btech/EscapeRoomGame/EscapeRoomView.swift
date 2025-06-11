@@ -13,6 +13,9 @@ struct EscapeRoomView: View {
     @State private var message = "Guess secret code! If the red number reaches 0, you lose."
     @State private var showMessage = true
     @State private var rounds = 0
+    @Binding var level : Int
+    @State var moveOn = false
+    let gameStatus = Timer.publish(every: 0.008, on: .main, in: .common).autoconnect()
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -102,18 +105,31 @@ struct EscapeRoomView: View {
                 Dialogue(window: geometry.size, name: "Lock", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"Penny")
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
             }
-            if model.chancesRemaining == 0 {
-                let _ = model.noChances()
-                let _ = print("lose")
+            if model.checkGame() {
+                Button{
+                    moveOn = true
+                } label: {
+                    Image("Key")
+                        .resizable()
+                        .frame(width: 600,height: 250)
+                        .offset(x:geometry.size.width*0.01,y:geometry.size.height*0.4)
+                }
             }
-            if model.checkGame(){
-                let _ = model.win()
-                let _ = print("win")
+        }
+        .onReceive(gameStatus){_ in
+            if moveOn && level == 4{
+                level = 5
             }
         }
     }
 }
 
 #Preview {
-    EscapeRoomView()
+    struct Preview: View {
+        @State var val = 4
+        var body: some  View {
+            EscapeRoomView(level: $val)
+        }
+    }
+    return Preview()
 }
