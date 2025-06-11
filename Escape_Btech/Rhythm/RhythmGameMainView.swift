@@ -16,7 +16,6 @@ struct RhythmGameMainView: View {
     var body: some View {
         ZStack {
             model.displayScored(text: scoreList[scoreList.count - 1])
-            
             ForEach($model.arrows) {$arrow in
                 Image(arrow.image)
                     .resizable()
@@ -89,6 +88,7 @@ struct RhythmGameMainView: View {
             if model.isWon && level < 2{
                 level = 2
             }
+            level = 2
         }
     }
 }

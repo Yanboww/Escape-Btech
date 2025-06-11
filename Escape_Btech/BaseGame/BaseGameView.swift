@@ -17,6 +17,7 @@ struct BaseGameView: View {
     @State var imageNameRight:String
     @State var showGame = false
     @Binding var level:Int
+    @State var random = true
     var body: some View {
         @State var image1 = Image(imageNameLeft)
             
@@ -32,7 +33,6 @@ struct BaseGameView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height)
                 image1.resizable().ignoresSafeArea().position(x: xPos, y:yPos)
                     .onReceive(timer){ _ in
-                        print(joystick.direction)
                         if(joyStickDirection == 1 && xPos > -450){
                             withAnimation(.linear(duration:0.25)){ xPos -= 60}
                         }else if(joyStickDirection == -1 && xPos < 480){
@@ -45,6 +45,12 @@ struct BaseGameView: View {
                     Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).offset(x:200,y:-100)
                     Button{
                         showGame.toggle()
+                        if level == 2{
+                            level = 3
+                        }
+                        else if level == 3{
+                            level = 4
+                        }
                     } label: {
                         Image("InteractButton")
                             .resizable()
@@ -59,6 +65,9 @@ struct BaseGameView: View {
                     if level == 1{
                         RhythmGameMainView(level: $level)
                             .environmentObject(RhythmGameModel())
+                    }
+                    else if level == 4 {
+                        EscapeRoomView(level: $level)
                     }
                 }
             }

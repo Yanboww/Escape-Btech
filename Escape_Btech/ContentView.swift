@@ -20,6 +20,15 @@ struct ContentView: View {
             else if gameLevel == 2 {
                 BaseGameView(imageNameLeft: "CafeLeft", imageNameRight: "CafeRight", level: $gameLevel)
             }
+            else if gameLevel == 3 {
+                BaseGameView(imageNameLeft: "6Left", imageNameRight: "6Right", level: $gameLevel)
+            }
+            else if gameLevel == 4{
+                BaseGameView(imageNameLeft: "LibraryLeft", imageNameRight: "LibraryRight", level: $gameLevel)
+            }
+            else{
+                EndView()
+            }
         }
     }
 }
