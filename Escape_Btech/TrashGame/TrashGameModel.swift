@@ -13,7 +13,7 @@ class TrashGameModel: ObservableObject{
     @Published private(set) var timers: [Timer.TimerPublisher] = [Timer.publish(every: 5, on: .main, in: .common)]
     @Published private(set) var timerMaxes: [Int] = [60,45,30]
     @Published private(set) var binLocations: [CGPoint] = [CGPoint(x:(407/3)*6,y:(397/6)),CGPoint(x:(407/3)*3.25,y:(397/6)),CGPoint(x:(407/3/2),y:(397/6))]
-    @Published private(set) var score : Int = 0
+    @Published private(set) var score : Int = 450
     @Published private(set) var backgroundPosition = [310, 200]
     
     var move1 = false
@@ -74,6 +74,7 @@ class TrashGameModel: ObservableObject{
     
     func subtractScore(x: Int){
         score -= x
+        if(score < 0){score = 0}
     }
     
     
