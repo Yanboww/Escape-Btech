@@ -15,16 +15,16 @@ struct ContentView: View {
                 MainMenuView(level: $gameLevel)
             }
             else if gameLevel == 1 {
-                BaseGameView(imageNameLeft: "OrchestraLeft", imageNameRight: "OrchestraRight", level: $gameLevel)
+                BaseGameView(imageNameLeft: "OrchestraLeft", imageNameRight: "OrchestraRight", level: $gameLevel, exclamationPoint: 425)
             }
             else if gameLevel == 2 {
-                BaseGameView(imageNameLeft: "CafeLeft", imageNameRight: "CafeRight", level: $gameLevel)
+                BaseGameView(imageNameLeft: "CafeLeft", imageNameRight: "CafeRight", level: $gameLevel, exclamationPoint: 425)
             }
             else if gameLevel == 3 {
-                BaseGameView(imageNameLeft: "6Left", imageNameRight: "6Right", level: $gameLevel)
+                BaseGameView(imageNameLeft: "6Left", imageNameRight: "6Right", level: $gameLevel, exclamationPoint: 625)
             }
             else if gameLevel == 4 {
-                BaseGameView(imageNameLeft: "LibraryLeft", imageNameRight: "LibraryRight", level: $gameLevel)
+                BaseGameView(imageNameLeft: "LibraryLeft", imageNameRight: "LibraryRight", level: $gameLevel, exclamationPoint: 800)
             }
             else{
                 EndView()

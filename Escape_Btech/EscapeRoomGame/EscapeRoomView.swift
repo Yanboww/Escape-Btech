@@ -130,6 +130,7 @@ struct EscapeRoomView: View {
                 ZStack{
                     Rectangle()
                         .ignoresSafeArea()
+                        .foregroundStyle(.black)
                         .frame(width: geometry.size.width,height: geometry.size.height)
                         .opacity(0.8)
                         .onTapGesture{

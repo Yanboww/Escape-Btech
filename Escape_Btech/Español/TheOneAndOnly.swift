@@ -49,16 +49,11 @@ struct TheOneAndOnly: View
         
         ZStack
         {
-            Rectangle()
-                .ignoresSafeArea()
-                .foregroundStyle(.white)
-                .frame(width: 1000,height: .infinity)
-                .offset(x:0,y:100)
+           
             Image("sixthfloorFULL")
                 .resizable()
                 .ignoresSafeArea()
-                .aspectRatio(contentMode: .fill)
-                .opacity(1)
+                .frame(width:4511/2,height:1039/2)
             let dialogue: [Dialogue] =
             [
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: pennyImg),
@@ -72,15 +67,19 @@ struct TheOneAndOnly: View
             dialogue[index]
                 .offset(y:20)
             
-            Capsule()
-                .frame(width: 300, height: 20)
-                .foregroundStyle(.gray)
-                .offset(y:200)
+            GeometryReader{geometry in
+                Rectangle()
+                    .frame(width: 300, height: 20)
+                    .foregroundStyle(.gray)
+                    .position(x:1125,y:450)
+                
+                Rectangle()
+                    .frame(width: width, height: 20)
+                    .foregroundStyle(.red)
+                    .position(x:950+width/2,y:450)
+                    
+            }
             
-            Capsule()
-                .frame(width: width, height: 20)
-                .foregroundStyle(.red)
-                .offset(y:200)
             
             HStack
             {
