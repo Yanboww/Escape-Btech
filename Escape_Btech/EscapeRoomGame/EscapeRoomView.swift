@@ -47,7 +47,7 @@ struct EscapeRoomView: View {
                                 } label: {
                                     ZStack{
                                         Circle()
-                                            .frame(width: 20,height: 20)
+                                            .frame(width: 30,height: 30)
                                             .foregroundStyle(.gray)
                                         Text("\(i)")
                                             .foregroundStyle(.black)
@@ -65,7 +65,7 @@ struct EscapeRoomView: View {
                                 } label: {
                                     ZStack{
                                         Circle()
-                                            .frame(width: 20,height: 20)
+                                            .frame(width: 30,height: 30)
                                             .foregroundStyle(.gray)
                                         Text("\(i)")
                                             .foregroundStyle(.black)
@@ -83,7 +83,7 @@ struct EscapeRoomView: View {
                                 } label: {
                                     ZStack{
                                         Circle()
-                                            .frame(width: 20,height: 20)
+                                            .frame(width: 30,height: 30)
                                             .foregroundStyle(.gray)
                                         Text("\(i)")
                                             .foregroundStyle(.black)
@@ -102,7 +102,7 @@ struct EscapeRoomView: View {
                 print(model.secretCode)
             }
             if model.chancesRemaining > 0 && !message.isEmpty {
-                Dialogue(window: geometry.size, name: "Lock", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"Penny")
+                Dialogue(window: geometry.size, name: "Mysterious Voice", dialogueText: message, displayDialogue: $showMessage, round: rounds,image:"")
                     .offset(x:-geometry.size.width*0.01,y:geometry.size.height*0.25)
             }
             if model.checkGame() {
@@ -124,6 +124,24 @@ struct EscapeRoomView: View {
                             .offset(x:0,y:geometry.size.height*0.15)
                     }
 
+                }
+            }
+            else if model.chancesRemaining <= 0{
+                ZStack{
+                    Rectangle()
+                        .ignoresSafeArea()
+                        .frame(width: geometry.size.width,height: geometry.size.height)
+                        .opacity(0.8)
+                        .onTapGesture{
+                            model.resetGame()
+                        }
+                    Text("You Lose")
+                        .font(Font.custom("pixel", size: 60))
+                        .foregroundStyle(.red)
+                        .offset(x:0,y:-geometry.size.height*0.3)
+                        .onTapGesture{
+                            model.resetGame()
+                        }
                 }
             }
         }

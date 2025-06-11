@@ -45,8 +45,11 @@ struct BaseGameView: View {
                     Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).offset(x:200,y:-100)
                     Button{
                         showGame.toggle()
-                       if level == 3{
-                            level = 4
+                        if level == 1 {
+                            level = 2
+                        }
+                        if level == 2 {
+                            level = 3
                         }
                     } label: {
                         Image("InteractButton")
@@ -60,11 +63,14 @@ struct BaseGameView: View {
                     .offset(x:300,y:0)
                 if showGame {
                     if level == 1{
-                        RhythmGameMainView(level: $level)
-                            .environmentObject(RhythmGameModel())
+                        /*RhythmGameMainView(level: $level)
+                            .environmentObject(RhythmGameModel())*/
                     }
                     else if level == 2 {
-                        TrashGameMainView(level: $level)
+                        //TrashGameMainView(level: $level)
+                    }
+                    else if level == 3 {
+                        TheOneAndOnly(level: $level)
                     }
                     else if level == 4 {
                         EscapeRoomView(level: $level)
