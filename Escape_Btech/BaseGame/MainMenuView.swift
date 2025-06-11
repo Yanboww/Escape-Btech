@@ -13,7 +13,7 @@ struct MainMenuView: View {
     @State var opacity = 1
     @State var backgroundX: CGFloat = 0
     @Binding var level : Int
-    let backgrounds: [ImageResource] = [.revisedCafeteriaFULL, .orchestraFULL]
+    let backgrounds: [ImageResource] = [.orchestraFULL, .revisedCafeteriaFULL, .sixthfloorFULL, .libraryFULL]
     
     var body: some View {
         GeometryReader { geometry in
@@ -36,11 +36,20 @@ struct MainMenuView: View {
                     }
                 VStack {
                     HStack {
-                        Text("Escape Brooklyn Tech")
-                            .font(Font.custom("pixel", size: 75))
-                            .foregroundStyle(.black)
-                            .padding()
-                            .offset(x: -450)
+                        ZStack {
+                            Rectangle()
+                                .ignoresSafeArea()
+                                .foregroundStyle(.white)
+                                .frame(width: 800, height: 100)
+                                .opacity(0.5)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .offset(x: -450)
+                            Text("Escape Brooklyn Tech")
+                                .font(Font.custom("pixel", size: 75))
+                                .foregroundStyle(.black)
+                                .padding()
+                                .offset(x: -450)
+                        }
                     }
                     Button{
                         if level < 1 {
