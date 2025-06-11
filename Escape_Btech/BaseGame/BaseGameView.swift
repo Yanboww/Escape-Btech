@@ -15,6 +15,8 @@ struct BaseGameView: View {
     @State var inRangeForPopup = false
     @State var imageNameLeft:String
     @State var imageNameRight:String
+    @State var showGame = false
+    @Binding var level:Int
     var body: some View {
         @State var image1 = Image(imageNameLeft)
             
@@ -42,17 +44,23 @@ struct BaseGameView: View {
                 if(xPos <= -350){
                     Image("INTERACT NOTICE").resizable().frame(width:36,height:106.32).offset(x:200,y:-100)
                     Button{
-                        print("Interact")
+                        showGame.toggle()
                     } label: {
                         Image("InteractButton")
                             .resizable()
                             .frame(width: 100,height: 100)
                     }
-                    .offset(x:-300,y:0)
+                    .offset(x:-geometry.size.width*0.35,y:0)
                 }
                 joystick
                 SpriteView(scene:scene, options: [.allowsTransparency])
                     .offset(x:300,y:0)
+                if showGame {
+                    if level == 1{
+                        RhythmGameMainView(level: $level)
+                            .environmentObject(RhythmGameModel())
+                    }
+                }
             }
             
         }.ignoresSafeArea()
@@ -63,5 +71,11 @@ struct BaseGameView: View {
 }
 
 #Preview {
-    BaseGameView(imageNameLeft: "LibraryLeft", imageNameRight: "LibraryRight")
+    struct Preview: View {
+        @State var val = 1
+        var body: some  View {
+            BaseGameView(imageNameLeft: "LibraryLeft", imageNameRight: "LibraryRight", level: $val)
+        }
+    }
+    return Preview()
 }

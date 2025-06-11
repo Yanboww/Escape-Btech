@@ -8,10 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var gameLevel = 0
     var body: some View {
-        let rhythmModel = RhythmGameModel()
         GeometryReader { geometry in
-            
+            if gameLevel == 0 {
+                MainMenuView(level: $gameLevel)
+            }
+            else if gameLevel == 1 {
+                BaseGameView(imageNameLeft: "OrchestraLeft", imageNameRight: "OrchestraRight", level: $gameLevel)
+            }
+            else if gameLevel == 2 {
+                BaseGameView(imageNameLeft: "CafeLeft", imageNameRight: "CafeRight", level: $gameLevel)
+            }
         }
     }
 }

@@ -11,7 +11,8 @@ struct RhythmGameMainView: View {
     @EnvironmentObject var model: RhythmGameModel
     @State var scoreList: [String] = [""]
     @StateObject var audioPlayerViewModel = AudioPlayerViewModel()
-    
+    @Binding var level: Int
+    let gameStatus = Timer.publish(every: 0.008, on: .main, in: .common).autoconnect()
     var body: some View {
         ZStack {
             model.displayScored(text: scoreList[scoreList.count - 1])
@@ -84,10 +85,21 @@ struct RhythmGameMainView: View {
         .onAppear {
             audioPlayerViewModel.playOrPause()
         }
+        .onReceive(gameStatus) { _ in
+            if model.isWon && level < 2{
+                level = 2
+            }
+        }
     }
 }
 
 #Preview {
-    RhythmGameMainView()
-        .environmentObject(RhythmGameModel())
+    struct Preview: View {
+        @State var val = 1
+        var body: some  View {
+            RhythmGameMainView(level: $val)
+                .environmentObject(RhythmGameModel())
+        }
+    }
+    return Preview()
 }
