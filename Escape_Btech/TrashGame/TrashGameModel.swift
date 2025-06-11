@@ -74,6 +74,7 @@ class TrashGameModel: ObservableObject{
     
     func subtractScore(x: Int){
         score -= x
+        if(score < 0){score = 0}
     }
     
     
