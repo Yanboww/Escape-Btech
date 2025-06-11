@@ -69,4 +69,11 @@ class EscapeModel: ObservableObject{
     func win(){
         gameState = 1
     }
+    
+    func resetGame(){
+        generateSecretCode()
+        currentTried = []
+        chancesRemaining = 6
+        gameState = 0
+    }
 }

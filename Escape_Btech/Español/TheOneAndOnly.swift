@@ -48,6 +48,8 @@ struct TheOneAndOnly: View
         
         ZStack
         {
+            Image("sixthfloorFULL")
+                .resizable()
             let dialogue: [Dialogue] =
             [
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: penny),
@@ -73,7 +75,7 @@ struct TheOneAndOnly: View
             
             HStack
             {
-                Button(options[0 + 4 * iteration])
+                Button
                 {
                     if persuasion > 1 {penny = "Penny2"}
                     
@@ -108,13 +110,23 @@ struct TheOneAndOnly: View
                         visibile = !visibile
                         opacity = 0
                     }
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 350,height: 30)
+                            .foregroundStyle(.black)
+                            .opacity(0.7)
+                        Text(options[0 + 4 * iteration])
+                            .font(Font.custom("dogica", size: 10))
+                            .foregroundStyle(.white)
+                    }
                 }
                 .frame(width: 350, height: 200)
                 .offset(y:-45)
                 .disabled(!visibile)
                 .opacity(opacity)
                 
-                Button(options[1 + 4 * iteration])
+                Button
                 {
                     if persuasion > 1 {penny = "Penny2"}
                     
@@ -149,6 +161,16 @@ struct TheOneAndOnly: View
                         
                         if iteration == 2 {lastConvo = true}
                     }
+                } label : {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 350,height: 30)
+                            .foregroundStyle(.black)
+                            .opacity(0.7)
+                        Text(options[1 + 4 * iteration])
+                            .font(Font.custom("dogica", size: 10))
+                            .foregroundStyle(.white)
+                    }
                 }
                 .frame(width: 350, height: 200)
                 .offset(y:-45)
@@ -159,7 +181,7 @@ struct TheOneAndOnly: View
             
             HStack
             {
-                Button(options[2 + 4 * iteration])
+                Button
                 {
                     if persuasion > 1 {penny = "Penny2"}
                     
@@ -193,13 +215,23 @@ struct TheOneAndOnly: View
                         visibile = !visibile
                         opacity = 0
                     }
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 350,height: 30)
+                            .foregroundStyle(.black)
+                            .opacity(0.7)
+                        Text(options[2 + 4 * iteration])
+                            .font(Font.custom("dogica", size: 10))
+                            .foregroundStyle(.white)
+                    }
                 }
                 .frame(width: 350, height: 200)
                 .offset(y:-20)
                 .disabled(!visibile)
                 .opacity(opacity)
                 
-                Button(options[3 + 4 * iteration])
+                Button
                 {
                     if persuasion > 1 {penny = "Penny2"}
                     
@@ -233,6 +265,16 @@ struct TheOneAndOnly: View
                         
                         if iteration == 2 {lastConvo = true}
                     }
+                } label : {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 350,height: 30)
+                            .foregroundStyle(.black)
+                            .opacity(0.7)
+                        Text(options[3 + 4 * iteration])
+                            .font(Font.custom("dogica", size: 10))
+                            .foregroundStyle(.white)
+                    }
                 }
                 .frame(width: 350, height: 200)
                 .offset(y:-20)
@@ -245,7 +287,7 @@ struct TheOneAndOnly: View
                 .resizable()
                 .frame(width: 250, height: 100)
                 .offset(y:50)
-                .opacity(opacityV)
+                .opacity(0)
             
             Button(action: {
                 level += 1
