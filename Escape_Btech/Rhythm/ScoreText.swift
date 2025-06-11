@@ -14,7 +14,7 @@ struct ScoreText: View {
     
     var body: some View {
         Text(string)
-            .font(.system(size: 50, design: .monospaced))
+            .font(Font.custom("pixel", size: 50))
             .foregroundStyle(color)
             .shadow(color: .black, radius: 1.5, x: 1, y: 1)
             .opacity(opacity)

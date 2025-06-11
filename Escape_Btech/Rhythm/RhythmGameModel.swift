@@ -25,14 +25,14 @@ class RhythmGameModel: ObservableObject {
     ]
     @Published var arrows: [Arrow] =
     [
-        Arrow(position: CGPoint(x:80, y: 1000), sequence: [40, -280, -450, -200, -10000, -10000], isEnabled: false, image: .arrowLeft),
-        Arrow(position: CGPoint(x:160, y: 1000), sequence: [-45, -280, -280, -200, -10000, -10000], isEnabled: false, image: .arrowDown),
-        Arrow(position: CGPoint(x:240, y: 1000), sequence: [-130, -280, -110, -200, -10000, -10000], isEnabled: false, image: .arrowUp),
-        Arrow(position: CGPoint(x:320, y: 1000), sequence: [-215, -280, 60, -200, -10000, -10000], isEnabled: false, image: .arrowRight),
-        Arrow(position: CGPoint(x:80, y: 1000), sequence: [-555, -280, -175, -200, -10000, -10000], isEnabled: false, image: .arrowLeft),
-        Arrow(position: CGPoint(x:160, y: 1000), sequence: [-470, -280, -175, -200, -10000, -10000], isEnabled: false, image: .arrowDown),
-        Arrow(position: CGPoint(x:240, y: 1000), sequence: [-385, -280, -175, -200, -10000, -10000], isEnabled: false, image: .arrowUp),
-        Arrow(position: CGPoint(x:320, y: 1000), sequence: [-300, -280, -175, -200, -10000, -10000], isEnabled: false, image: .arrowRight),
+        Arrow(position: CGPoint(x:80, y: 1000), sequence: [40, -280, -450, 10, -150, -140, -10000, -10000], isEnabled: false, image: .arrowLeft),
+        Arrow(position: CGPoint(x:160, y: 1000), sequence: [-45, -280, -280, -240, -100, -105, -10000, -10000], isEnabled: false, image: .arrowDown),
+        Arrow(position: CGPoint(x:240, y: 1000), sequence: [-130, -280, -110, -240, -100, -195, -10000, -10000], isEnabled: false, image: .arrowUp),
+        Arrow(position: CGPoint(x:320, y: 1000), sequence: [-215, -280, 60, -240, -240, -55, -10000, -10000], isEnabled: false, image: .arrowRight),
+        Arrow(position: CGPoint(x:80, y: 1000), sequence: [-555, -280, -175, 90, -260, -10000, -10000], isEnabled: false, image: .arrowLeft),
+        Arrow(position: CGPoint(x:160, y: 1000), sequence: [-470, -280, -175, -240, -110, -10000, -10000], isEnabled: false, image: .arrowDown),
+        Arrow(position: CGPoint(x:240, y: 1000), sequence: [-385, -280, -175, -240, -195, -10000, -10000], isEnabled: false, image: .arrowUp),
+        Arrow(position: CGPoint(x:320, y: 1000), sequence: [-300, -280, -175, -240, -185, -10000, -10000], isEnabled: false, image: .arrowRight),
     ]
     @Published var scoreList: [String] = [""]
     @Published var scoreCount = 1
@@ -53,6 +53,7 @@ class RhythmGameModel: ObservableObject {
                 arrows[i].position.y = arrows[i].sequence[arrows[i].index]
                 if arrows[i].index < arrows[i].sequence.count - 1 {
                     arrows[i].index += 1
+                    print("\(arrows[i].sequence) \(arrows[i].index)")
                 }
                 if arrows[i].index != 0 && arrows[i].isEnabled {
                     scoreList.append("Yikes")

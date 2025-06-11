@@ -30,9 +30,11 @@ class AudioPlayerViewModel: ObservableObject {
     if player.isPlaying {
       player.pause()
       isPlaying = false
+        print("stoped")
     } else {
       player.play()
       isPlaying = true
+        print("plaay")
     }
   }
 }
