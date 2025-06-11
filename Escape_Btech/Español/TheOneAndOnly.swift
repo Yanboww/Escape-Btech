@@ -1,22 +1,21 @@
-/*import SwiftUI
+import SwiftUI
 
 struct TheOneAndOnly: View
 {
-    @State private var iteration: Int = 0
-    @State private var persuasion: Int = 0
-    @State private var visibile: Bool = true
-    @State private var opacity: Double = 1
-    @State private var opacityR: Double = 0
-    @State private var index: Int = 0
-    @State private var lastConvo: Bool = false
-<<<<<<< HEAD
-    @State private var reset: Bool = false
-    @State private var penny: String = "Penny"
-    @State private var boolean: Bool = true
-    @State private var opacityV: Double = 0
-=======
-    @State private var reset:Bool = false
-    private var dialogue: [Dialogue] =
+    @Binding public var level: Int
+    @State var iteration: Int = 0
+    @State var persuasion: Int = 0
+    @State var visibile: Bool = true
+    @State var opacity: Double = 1
+    @State var opacityR: Double = 0
+    @State var index: Int = 0
+    @State var lastConvo: Bool = false
+    @State var reset: Bool = false
+    @State var penny: String = "Penny"
+    @State var boolean: Bool = true
+    @State var opacityV: Double = 0
+    
+    var dialogue: [Dialogue] =
     [
         /*Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?"),
         Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "¿Y qué ganas tú con esta llave?"),
@@ -24,8 +23,7 @@ struct TheOneAndOnly: View
         Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "I guess it doesn’t hurt me to give you the key."),
         Dialogue(window: CGSize(width: 830,height: 300), name: "Pablo", dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!")**/
     ]
->>>>>>> a3d762c2aef7ba7f58e6baa9fc9f423179cbde17
-    private var options: [String] =
+    var options: [String] =
     [
         "Eres una persona increíble y sé que harás lo correcto. Confío en ti.",
         "Si me das la llave, te lo agradeceré mucho.",
@@ -47,6 +45,7 @@ struct TheOneAndOnly: View
     
     var body: some View
     {
+        
         ZStack
         {
             let dialogue: [Dialogue] =
@@ -54,7 +53,7 @@ struct TheOneAndOnly: View
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "Welcome to the third game! To advance to the next level, I'll nedd you to attempt to persuade me to give up the key to the next floor, in spanish. Now let's begin! \n¿Por qué debería darte esta llave?", displayDialogue: $boolean, round: 1, image: penny),
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y qué ganas tú con esta llave?", displayDialogue: $boolean, round: 1, image: penny),
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "¿Y si no quiero darte la llave?", displayDialogue: $boolean, round: 1, image: penny),
-                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "I guess it doesn’t hurt me to give you the key.", displayDialogue: $boolean, round: 1, image: penny),
+                Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "I guess it doesn’t hurt me to give you the key. Click it to proceed!", displayDialogue: $boolean, round: 1, image: penny),
                 Dialogue(window: CGSize(width: 830, height: 390), name: penny, dialogueText: "After that performance, I might be doing you a favor by refusing to let you proceed. Try again!", displayDialogue: $boolean, round: 1, image: penny)
             ]
             var width: CGFloat = CGFloat(persuasion * 50)
@@ -71,7 +70,7 @@ struct TheOneAndOnly: View
                 .frame(width: width, height: 20)
                 .foregroundStyle(.red)
                 .offset(y:200)
-                    
+            
             HStack
             {
                 Button(options[0 + 4 * iteration])
@@ -248,11 +247,16 @@ struct TheOneAndOnly: View
                 .offset(y:50)
                 .opacity(opacityV)
             
-            Image("Key")
-                .resizable()
-                .frame(width: 150, height: 75)
-                .offset(y:125)
-                .opacity(opacityV)
+            Button(action: {
+                level += 1
+                print(level)
+            }){
+                Image("Key")
+                    .resizable()
+                    .frame(width: 150, height: 75)
+                    .opacity(opacityV)
+            }.offset(y:100)
+            
         }
         
         Button("Reset")
@@ -272,4 +276,7 @@ struct TheOneAndOnly: View
     }
 }
 
-#Preview { TheOneAndOnly() }*/
+#Preview {
+    @Previewable @State var temp = 0
+    TheOneAndOnly(level: $temp)
+}
