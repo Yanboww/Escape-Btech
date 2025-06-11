@@ -107,7 +107,7 @@ class RhythmGameModel: ObservableObject {
     
     func isGameWon() {
         if gameOver {
-            if score >= 3500 {
+            if score >= 0 {
                 isWon = true
             } else {
                 isWon = false
