@@ -80,7 +80,7 @@ class BaseGameScene: SKScene{
             let name = "idle00\(i)"
             playerAnimation.append(textureAtlas.textureNamed(name))
         }
-        let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.3)
+        let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.5)
         let repeatForever = SKAction.repeatForever(animation)
         player.run(repeatForever)
     }
