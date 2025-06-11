@@ -9,13 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        let gameModel = RhythmGameModel()
+        let rhythmModel = RhythmGameModel()
         GeometryReader { geometry in
-            VStack {
-                RhythmGameMainView()
-                    .environmentObject(gameModel)
-            }
-            .padding()
+            
         }
     }
 }

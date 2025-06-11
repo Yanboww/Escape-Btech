@@ -19,12 +19,12 @@ struct Dialogue: View {
         ZStack {
             if displayDialogue {
                 RoundedRectangle(cornerRadius: 10)
-                    .foregroundStyle(.black)
                     .opacity(0.8)
-                    .frame(width: window.width, height: window.height*0.35)
+                    .frame(width: window.width, height: window.height*0.34)
                     .onTapGesture(count: 1) {
                         displayDialogue = false
                     }
+                    .offset(x:0,y:20)
                 Image(image)
                     .resizable()
                     .frame(width: 200,height: 200)
@@ -47,7 +47,6 @@ struct Dialogue: View {
                     .foregroundStyle(.cyan)
                     .offset(x:window.width*0.4,y:window.height*0.15)
                     .font(.system(size: 20))
-                
             }
         }
         .offset(x:0,y:-window.height*0.25)

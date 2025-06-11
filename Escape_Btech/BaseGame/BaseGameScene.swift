@@ -11,9 +11,12 @@ import SpriteKit
 class BaseGameScene: SKScene{
     
     private var player = SKSpriteNode(imageNamed: "idle000")
+    private var anim = 0
     @Binding var direction: Int
-    init(direction:Binding<Int>, size:CGSize){
+    @Binding var playerPos: CGFloat
+    init(direction:Binding<Int>, playerPos:Binding<CGFloat>, size:CGSize){
         _direction = direction
+        _playerPos = playerPos
         super.init(size: size)
     }
 
@@ -36,11 +39,29 @@ class BaseGameScene: SKScene{
     override func update(_ currentTime: TimeInterval){
         if direction == 1 {
             player.xScale = 0.20
-            //runAnimation()
+            if anim == 0 {
+                walkAnimation()
+                anim += 1
+            }
         }
         else if direction == -1 {
             player.xScale = -0.20
-            //runAnimation()
+            if anim == 0 {
+                walkAnimation()
+                anim += 1
+            }
+        }
+        if direction == 0 {
+            if anim != 0 {
+                idleAnimation()
+                anim = 0
+            }
+        }
+        if playerPos < -450 && direction == 1 && player.position.x < 380{
+            player.position.x += 5
+        }
+        else if direction == -1 && player.position.x > 100 {
+            player.position.x -= 5
         }
     }
     
@@ -64,11 +85,11 @@ class BaseGameScene: SKScene{
         player.run(repeatForever)
     }
     
-    private func runAnimation(){
-        let textureAtlas = SKTextureAtlas(named: "MasonRun")
+    private func walkAnimation(){
+        let textureAtlas = SKTextureAtlas(named: "MasonWalk")
         var playerAnimation = [SKTexture]()
         for i in 0..<textureAtlas.textureNames.count {
-            let name = "run00\(i)"
+            let name = "walk00\(i)"
             playerAnimation.append(textureAtlas.textureNamed(name))
         }
         let animation = SKAction.animate(with: playerAnimation, timePerFrame: 0.15)

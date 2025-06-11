@@ -16,40 +16,81 @@ struct EscapeRoomView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(width: 700, height: 300)
-                    .foregroundStyle(.gray)
+                Image("keypad")
+                    .resizable()
+                    .frame(width: 450,height: 450)
+                    .offset(x:geometry.size.width*0.3,y:-geometry.size.height*0.15)
                 VStack{
                     Text("\(model.chancesRemaining)")
                         .foregroundStyle(.red)
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .frame(width: 150,height: 60)
-                        HStack{
-                            ForEach(displayedArr, id: \.self){guess in
-                                Text(String(guess))
-                                    .foregroundStyle(.white)
-                                    .font(.system(size: 30))
-                                    .offset(x:0,y:geometry.size.height*0.02)
-                            }
+                        .font(Font.custom("pixel", size: 40))
+                        .offset(x:geometry.size.width*0.18,y:-geometry.size.height*0.45)
+                    HStack{
+                        ForEach(displayedArr, id: \.self){guess in
+                            Text(String(guess))
+                                .foregroundStyle(.white)
+                                .font(Font.custom("dogica", size: 30))
+                                .offset(x:0,y:geometry.size.height*0.05)
                         }
                     }
-                    HStack{
-                        ForEach(0..<10){ i in
-                            Button{
-                                message = model.appendCode(val: i)
-                                displayedArr = model.currentTried
-                                rounds += 1
-                            } label: {
-                                ZStack{
-                                    Circle()
-                                        .frame(width: 20,height: 20)
-                                    Text("\(i)")
-                                        .foregroundStyle(.white)
+                    .offset(x:geometry.size.width*0.18,y:-geometry.size.height*0.48)
+                    VStack {
+                        HStack{
+                            ForEach(0..<3){ i in
+                                Button{
+                                    message = model.appendCode(val: i)
+                                    displayedArr = model.currentTried
+                                    rounds += 1
+                                } label: {
+                                    ZStack{
+                                        Circle()
+                                            .frame(width: 20,height: 20)
+                                            .foregroundStyle(.gray)
+                                        Text("\(i)")
+                                            .foregroundStyle(.black)
+                                            .font(Font.custom("dogica", size: 15))
+                                    }
+                                }
+                            }
+                        }
+                        HStack{
+                            ForEach(3..<7){ i in
+                                Button{
+                                    message = model.appendCode(val: i)
+                                    displayedArr = model.currentTried
+                                    rounds += 1
+                                } label: {
+                                    ZStack{
+                                        Circle()
+                                            .frame(width: 20,height: 20)
+                                            .foregroundStyle(.gray)
+                                        Text("\(i)")
+                                            .foregroundStyle(.black)
+                                            .font(Font.custom("dogica", size: 15))
+                                    }
+                                }
+                            }
+                        }
+                        HStack {
+                            ForEach(7..<10){ i in
+                                Button{
+                                    message = model.appendCode(val: i)
+                                    displayedArr = model.currentTried
+                                    rounds += 1
+                                } label: {
+                                    ZStack{
+                                        Circle()
+                                            .frame(width: 20,height: 20)
+                                            .foregroundStyle(.gray)
+                                        Text("\(i)")
+                                            .foregroundStyle(.black)
+                                            .font(Font.custom("dogica", size: 15))
+                                    }
                                 }
                             }
                         }
                     }
+                    .offset(x:geometry.size.width*0.18,y:-geometry.size.height*0.3)
                 }
             }
             .offset(x:geometry.size.width*0.01,y:geometry.size.height*0.1)
