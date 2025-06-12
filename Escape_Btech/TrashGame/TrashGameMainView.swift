@@ -65,7 +65,7 @@ struct TrashGameMainView: View {
                     DraggableView(image: Image("PIZZA"), type: 0,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:760/4,y:499/4), trashGameModel: trashGameModel)
                     DraggableView(image: Image("MILK CARTON"), type: 1,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
                     
-                }else if(trashGameModel.score < 500 && !playerWon){
+                }else if(trashGameModel.score < 300 && !playerWon){
                     DraggableView(image: Image("PIZZA"), type: 0,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:760/4,y:499/4), trashGameModel: trashGameModel)
                     DraggableView(image: Image("MILK CARTON"), type: 1,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
                     DraggableView(image: Image("Spoon"), type: 2,  imageDimensions: CGSize(width:100,height:100), geometry: geometry, frameDimension: CGPoint(x:438/4,y:578/4), trashGameModel: trashGameModel)
